@@ -2,6 +2,7 @@
 using Coolblue.ProductApiAdapter.Exceptions;
 using Coolblue.ProductApiAdapter.Models;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,62 +27,50 @@ namespace Coolblue.ProductApiAdapter
 
         public async Task<IList<Product>> GetProductsAsync()
         {
-            var response = await _httpClient.GetAsync("products");
+            var data = await GetJsonString("products");
 
-            if (!response.IsSuccessStatusCode)
-            {
-                throw HttpErrorToException.Create(response);
-            }
-
-            var responseStream = await response.Content.ReadAsStreamAsync();
-            var products = await JsonSerializer.DeserializeAsync<List<Product>>(responseStream);
+            var products = JsonConvert.DeserializeObject<List<Product>>(data);
 
             return await Task.FromResult(products.ToList());
         }
 
-        public async Task<Product> GetProductsByIdAsync(int productId)
+        public async Task<Product> GetProductByIdAsync(int productId)
         {
-            var response = await _httpClient.GetAsync($"products/{productId}");
+            var data = await GetJsonString($"products/{productId}");
 
-            if (!response.IsSuccessStatusCode)
-            {
-                throw HttpErrorToException.Create(response);
-            }
-
-            var responseStream = await response.Content.ReadAsStreamAsync();
-            var product = await JsonSerializer.DeserializeAsync<Product>(responseStream);
+            var product = JsonConvert.DeserializeObject<Product>(data);
 
             return await Task.FromResult(product);
         }
 
         public async Task<IList<ProductType>> GetProductTypesAsync()
         {
-            var response = await _httpClient.GetAsync("product_types");
+            var data = await GetJsonString("product_types");
 
-            if (!response.IsSuccessStatusCode)
-            {
-                throw HttpErrorToException.Create(response);
-            }
-
-            var responseStream = await response.Content.ReadAsStreamAsync();
-            var productTypes = await JsonSerializer.DeserializeAsync<List<ProductType>>(responseStream);
+            var productTypes = JsonConvert.DeserializeObject<List<ProductType>>(data);
 
             return await Task.FromResult(productTypes.ToList());
         }
 
         public async Task<ProductType> GetProductTypeByIdAsync(int productTypeId)
         {
-            var response = await _httpClient.GetAsync($"product_types/{productTypeId}");
+            var data = await GetJsonString($"product_types/{productTypeId}");
+
+            var productType = JsonConvert.DeserializeObject<ProductType>(data);
+
+            return await Task.FromResult(productType);
+        }
+
+        private async Task<string> GetJsonString(string uri)
+        {
+            var response = await _httpClient.GetAsync(uri);
 
             if (!response.IsSuccessStatusCode)
             {
                 throw HttpErrorToException.Create(response);
             }
 
-            var responseStream = await response.Content.ReadAsStreamAsync();
-            var productType = await JsonSerializer.DeserializeAsync<ProductType>(responseStream);
-
-            return await Task.FromResult(productType);
+            return await response.Content.ReadAsStringAsync(); ;
         }
     }
 }

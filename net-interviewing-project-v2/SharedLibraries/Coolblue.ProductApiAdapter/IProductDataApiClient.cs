@@ -10,5 +10,11 @@ namespace Coolblue.ProductApiAdapter
     public interface IProductDataApiClient
     {
         Task<IList<Product>> GetProductsAsync();
+
+        Task<Product> GetProductByIdAsync(int productId);
+
+        Task<IList<ProductType>> GetProductTypesAsync();
+
+        Task<ProductType> GetProductTypeByIdAsync(int productTypeId);
     }
 }
