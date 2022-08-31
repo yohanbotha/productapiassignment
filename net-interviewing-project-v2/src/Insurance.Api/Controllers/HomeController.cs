@@ -18,18 +18,25 @@ namespace Insurance.Api.Controllers
 
             float insurance = 0f;
 
-            if (toInsure.SalesPrice < 500)
-                toInsure.InsuranceValue = 0;
+            if(toInsure.ProductTypeHasInsurance)
+            {
+                if (toInsure.SalesPrice >= 500 && toInsure.SalesPrice < 2000)
+                {
+                    toInsure.InsuranceValue += 1000;
+                }
+                else if(toInsure.SalesPrice >= 2000)
+                {
+                    toInsure.InsuranceValue += 2000;
+                }
+
+                if (toInsure.ProductTypeName == "Laptops" || toInsure.ProductTypeName == "Smartphones")
+                {
+                    toInsure.InsuranceValue += 500;
+                }
+            }
             else
             {
-                if (toInsure.SalesPrice > 500 && toInsure.SalesPrice < 2000)
-                    if (toInsure.ProductTypeHasInsurance)
-                        toInsure.InsuranceValue += 1000;
-                if (toInsure.SalesPrice >= 2000)
-                    if (toInsure.ProductTypeHasInsurance)
-                        toInsure.InsuranceValue += 2000;
-                if (toInsure.ProductTypeName == "Laptops" || toInsure.ProductTypeName == "Smartphones" && toInsure.ProductTypeHasInsurance)
-                    toInsure.InsuranceValue += 500;
+                toInsure.InsuranceValue = 0;
             }
 
             return toInsure;

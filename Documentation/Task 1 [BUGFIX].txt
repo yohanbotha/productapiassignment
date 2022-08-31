@@ -1,0 +1,5 @@
+1. Carefully went through the insurance cost calculation logic. 
+2. Update unit test to cover calculation logic (Followed the existing unit test and updated)  
+3. Refactored ProductTypeHasInsurance condition check. 
+4. Identified the bug and fixed it. 
+5. Re-run the unit test and verified the changes
