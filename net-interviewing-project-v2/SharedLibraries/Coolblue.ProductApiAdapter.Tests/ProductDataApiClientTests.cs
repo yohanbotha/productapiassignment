@@ -8,7 +8,7 @@ namespace Coolblue.ProductApiAdapter.Tests
     public class ProductDataApiClientTests
     {
         private readonly IProductDataApiClient _client;
-        private const string _productApi = "http://localhost:5002/";
+        private const string _productApi = "http://localhost:5002";
 
         public ProductDataApiClientTests()
         {

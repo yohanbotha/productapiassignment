@@ -27,7 +27,7 @@ namespace Coolblue.ProductApiAdapter
 
         public async Task<IList<Product>> GetProductsAsync()
         {
-            var data = await GetJsonString("products");
+            var data = await GetJsonString("/products");
 
             var products = JsonConvert.DeserializeObject<List<Product>>(data);
 
@@ -36,7 +36,7 @@ namespace Coolblue.ProductApiAdapter
 
         public async Task<Product> GetProductByIdAsync(int productId)
         {
-            var data = await GetJsonString($"products/{productId}");
+            var data = await GetJsonString($"/products/{productId}");
 
             var product = JsonConvert.DeserializeObject<Product>(data);
 
@@ -45,7 +45,7 @@ namespace Coolblue.ProductApiAdapter
 
         public async Task<IList<ProductType>> GetProductTypesAsync()
         {
-            var data = await GetJsonString("product_types");
+            var data = await GetJsonString("/product_types");
 
             var productTypes = JsonConvert.DeserializeObject<List<ProductType>>(data);
 
@@ -54,7 +54,7 @@ namespace Coolblue.ProductApiAdapter
 
         public async Task<ProductType> GetProductTypeByIdAsync(int productTypeId)
         {
-            var data = await GetJsonString($"product_types/{productTypeId}");
+            var data = await GetJsonString($"/product_types/{productTypeId}");
 
             var productType = JsonConvert.DeserializeObject<ProductType>(data);
 
