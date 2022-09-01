@@ -4,6 +4,6 @@
     {
         public int ProductId { get; set; }
 
-        public int InsuranceValue { get; set; }
+        public float InsuranceValue { get; set; }
     }
 }

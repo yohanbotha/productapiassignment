@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Coolblue.ProductApiAdapter;
+using Coolblue.ProductApiAdapter.Configuration;
+using Insurance.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +29,15 @@ namespace Insurance.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.Configure<ProductDataApiConfiguration>(configuration =>
+            {
+                configuration.BaseUrl = Configuration["ProductApi"];
+            });
+
+            services.AddScoped<IInsuranceService, InsuranceService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductDataApiClient, ProductDataApiClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

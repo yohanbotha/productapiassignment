@@ -8,7 +8,7 @@ namespace Insurance.Api.Controllers
     public class HomeController: Controller
     {
         [HttpPost]
-        [Route("api/insurance/product")]
+        [Route("api/home/product")]
         public InsuranceDto CalculateInsurance([FromBody] InsuranceDto toInsure)
         {
             int productId = toInsure.ProductId;

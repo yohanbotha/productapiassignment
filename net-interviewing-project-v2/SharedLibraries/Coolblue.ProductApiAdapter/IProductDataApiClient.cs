@@ -11,10 +11,10 @@ namespace Coolblue.ProductApiAdapter
     {
         Task<IList<Product>> GetProductsAsync();
 
-        Task<Product> GetProductByIdAsync(int productId);
+        Task<Product> GetProductAsync(int productId);
 
         Task<IList<ProductType>> GetProductTypesAsync();
 
-        Task<ProductType> GetProductTypeByIdAsync(int productTypeId);
+        Task<ProductType> GetProductTypeAsync(int productTypeId);
     }
 }

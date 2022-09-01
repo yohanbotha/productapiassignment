@@ -12,7 +12,7 @@ namespace Coolblue.ProductApiAdapter.Tests
 
         public ProductDataApiClientTests()
         {
-            _client = new ProductDataApiClient(new HttpClient(), Options.Create(new Configuration.ProductDataApiConfiguration
+            _client = new ProductDataApiClient(Options.Create(new Configuration.ProductDataApiConfiguration
             {
                 BaseUrl = _productApi
             }));
@@ -29,7 +29,7 @@ namespace Coolblue.ProductApiAdapter.Tests
         [Fact]
         public async Task ProductDataApiClient_GetProductById_ShouldReturnProduct()
         {
-            var product = await _client.GetProductByIdAsync(725435);
+            var product = await _client.GetProductAsync(725435);
 
             Assert.Equal(725435, product.Id);
         }
@@ -45,7 +45,7 @@ namespace Coolblue.ProductApiAdapter.Tests
         [Fact]
         public async Task ProductDataApiClient_GetProductTypeById_ShouldReturnProductType()
         {
-            var productType = await _client.GetProductTypeByIdAsync(124);
+            var productType = await _client.GetProductTypeAsync(124);
 
             Assert.Equal(124, productType.Id);
         }
@@ -53,17 +53,17 @@ namespace Coolblue.ProductApiAdapter.Tests
         [Fact]
         public void ProductDataApiClient_GetInvalidProduct_ShouldThrowNotFoundException()
         {
-            Assert.ThrowsAsync<ProductDataNotFoundException>(() => _client.GetProductTypeByIdAsync(123456));
+            Assert.ThrowsAsync<ProductDataNotFoundException>(() => _client.GetProductTypeAsync(123456));
         }
 
         [Fact]
         public void ProductDataApiClient_InvalidEndpoint_ShouldThrowException()
         {
-            IProductDataApiClient invalidClient = new ProductDataApiClient(new HttpClient(), Options.Create(new Configuration.ProductDataApiConfiguration
+            IProductDataApiClient invalidClient = new ProductDataApiClient(Options.Create(new Configuration.ProductDataApiConfiguration
             {
                 BaseUrl = $"https://www.coolblue.nl/en"
             }));
-            Assert.ThrowsAsync<Exception>(() => _client.GetProductByIdAsync(725435));
+            Assert.ThrowsAsync<Exception>(() => _client.GetProductAsync(725435));
         }
     }
 }

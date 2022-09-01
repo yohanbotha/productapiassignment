@@ -15,13 +15,12 @@ namespace Coolblue.ProductApiAdapter
     public class ProductDataApiClient : IProductDataApiClient
     {
         private readonly HttpClient _httpClient;
-        private readonly IOptions<ProductDataApiConfiguration> _configuration;
+        private readonly ProductDataApiConfiguration _configuration;
 
-        public ProductDataApiClient(HttpClient httpClient, IOptions<ProductDataApiConfiguration> configuration)
+        public ProductDataApiClient(IOptions<ProductDataApiConfiguration> configuration)
         {
-            _httpClient = httpClient;
-            _configuration = configuration;
-            _httpClient.BaseAddress = new Uri($"{_configuration.Value.BaseUrl}");
+            _configuration = configuration.Value;
+            _httpClient = new HttpClient { BaseAddress = new Uri(_configuration.BaseUrl) };
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
         }
 
@@ -34,7 +33,7 @@ namespace Coolblue.ProductApiAdapter
             return await Task.FromResult(products.ToList());
         }
 
-        public async Task<Product> GetProductByIdAsync(int productId)
+        public async Task<Product> GetProductAsync(int productId)
         {
             var data = await GetJsonString($"/products/{productId}");
 
@@ -52,7 +51,7 @@ namespace Coolblue.ProductApiAdapter
             return await Task.FromResult(productTypes.ToList());
         }
 
-        public async Task<ProductType> GetProductTypeByIdAsync(int productTypeId)
+        public async Task<ProductType> GetProductTypeAsync(int productTypeId)
         {
             var data = await GetJsonString($"/product_types/{productTypeId}");
 
