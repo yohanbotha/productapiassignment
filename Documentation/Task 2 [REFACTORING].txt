@@ -5,4 +5,4 @@
 	- Break the services accordingly
 	- Buisiness objects/Dtos introduced
 5. Removed existing unit test project from the solution and added new unit test added for domain.
-6.  
+6. Exception handling added
