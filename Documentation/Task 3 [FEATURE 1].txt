@@ -1,0 +1,4 @@
+1. New endpoint added to accept productIds
+2. Reuse the existing product calculate method to calculate the total cost
+3. Unit test added
+4. Simple caching mechanism added to prevent calling the same product endpoint when the product is duplicate in the order

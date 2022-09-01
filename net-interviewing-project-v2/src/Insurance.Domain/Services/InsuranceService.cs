@@ -17,7 +17,7 @@ namespace Insurance.Domain.Services
             _insuranceSettingsService = insuranceSettingsService;
         }
 
-        public async Task<float> GetInsuranceValueAsync(int productId)
+        public async Task<float> GetInsuranceForProductAsync(int productId)
         {
             var product = await _productService.GetProductAsync(productId);
 
@@ -48,6 +48,29 @@ namespace Insurance.Domain.Services
                 cost = 0;
             }
 
+            return cost;
+        }
+
+        public async Task<float> GetInsuranceForOrderAsync(IList<int> productIds)
+        {
+            float cost = 0f;
+
+            var productCache = new Dictionary<int, float>();
+
+            foreach(var productId in productIds)
+            {
+                if(productCache.ContainsKey(productId))
+                {
+                    cost += productCache[productId];
+                }
+                else
+                {
+                    var insuranceValue = await GetInsuranceForProductAsync(productId);
+                    cost += insuranceValue;
+
+                    productCache.Add(productId, insuranceValue);
+                }
+            }
             return cost;
         }
     }

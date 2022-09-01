@@ -2,6 +2,7 @@
 using Insurance.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Insurance.Api.Controllers
@@ -24,9 +25,20 @@ namespace Insurance.Api.Controllers
         {
             _logger.LogInformation($"CalculateInsuranceForProduct api invoked: {productId}");
 
-            var insuranceValue = await _insuranceService.GetInsuranceValueAsync(productId);
+            var insuranceValue = await _insuranceService.GetInsuranceForProductAsync(productId);
 
             return Ok(new { insuranceValue = insuranceValue});
+        }
+
+        [HttpPost]
+        [Route("api/insurance/order")]
+        public async Task<ActionResult> CalculateInsuranceForOrder([FromBody] List<int> productIds)
+        {
+            _logger.LogInformation($"CalculateInsuranceForOrder api invoked: {string.Join(", ", productIds)}");
+
+            var insuranceValue = await _insuranceService.GetInsuranceForOrderAsync(productIds);
+
+            return Ok(new { insuranceValue = insuranceValue });
         }
     }
 }

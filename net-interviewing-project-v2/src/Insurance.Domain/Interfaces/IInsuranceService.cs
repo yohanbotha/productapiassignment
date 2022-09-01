@@ -2,6 +2,8 @@
 {
     public interface IInsuranceService
     {
-        Task<float> GetInsuranceValueAsync(int productId);
+        Task<float> GetInsuranceForProductAsync(int productId);
+
+        Task<float> GetInsuranceForOrderAsync(IList<int> productIds);
     }
 }
