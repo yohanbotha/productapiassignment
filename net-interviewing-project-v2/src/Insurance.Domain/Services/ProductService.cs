@@ -18,6 +18,7 @@ namespace Insurance.Domain.Services
 
         public async Task<ProductDto> GetProductAsync(int productId)
         {
+            _logger.LogInformation($"GetProductAsync Fetching data Product Api product id: {productId}");
             var product = await _productDataApiClient.GetProductAsync(productId);
 
             var productType = await _productDataApiClient.GetProductTypeAsync(product.ProductTypeId);

@@ -1,4 +1,5 @@
-﻿using Insurance.Domain.Services;
+﻿using Insurance.Domain.Dtos.Product;
+using Insurance.Domain.Services;
 using Library.ProductApiAdapter;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -43,7 +44,12 @@ namespace Insurance.Domain.Tests.ProductServiceTests
             var productDto = await service.GetProductAsync(10);
 
             // Assert
-            Assert.True(productDto is { Id: 10, Name: "Test Product", SalesPrice: 500, ProductTypeId: 1, ProductTypeName: "Test Product Type", CanBeInsured: true });
+            Assert.Equal(10, productDto.Id);
+            Assert.Equal("Test Product", productDto.Name);
+            Assert.Equal(1, productDto.ProductTypeId);
+            Assert.Equal(500, productDto.SalesPrice);
+            Assert.Equal("Test Product Type", productDto.ProductTypeName);
+            Assert.True(productDto.CanBeInsured);
         }
     }
 }
