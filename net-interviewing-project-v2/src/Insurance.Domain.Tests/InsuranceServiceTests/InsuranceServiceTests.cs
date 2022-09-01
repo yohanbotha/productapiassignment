@@ -1,10 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Insurance.Domain.Tests.InsuranceServiceTests
@@ -13,10 +8,14 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
     {
         private readonly Mock<ILogger<InsuranceService>> _logger = new Mock<ILogger<InsuranceService>>();
         private readonly Mock<IProductService> _productService = new Mock<IProductService>();
+        private readonly Mock<IInsuranceSettingsService> _insuranceSettingsService = new Mock<IInsuranceSettingsService>();
 
         public InsuranceServiceTests()
         {
-
+            _insuranceSettingsService.Setup(c => c.GetMaximumInsuranceCost()).Returns(2000);
+            _insuranceSettingsService.Setup(c => c.GetMinimumInsuranceCost()).Returns(1000);
+            _insuranceSettingsService.Setup(c => c.GetInsuranceCostForSpeacialProducts()).Returns(500);
+            _insuranceSettingsService.Setup(c => c.GetInsurableSpeacialProducts()).Returns(new List<string> { "Laptops", "Smartphones" });
         }
 
         [Fact]
@@ -34,7 +33,7 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
                     CanBeInsured = false
                 });
 
-            var service = new InsuranceService(_logger.Object, _productService.Object);
+            var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
             var insuranceValue = await service.GetInsuranceValueAsync(10);
@@ -58,7 +57,7 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
                     CanBeInsured = true
                 });
 
-            var service = new InsuranceService(_logger.Object, _productService.Object);
+            var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
             var insuranceValue = await service.GetInsuranceValueAsync(10);
@@ -82,7 +81,7 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
                     CanBeInsured = true
                 });
 
-            var service = new InsuranceService(_logger.Object, _productService.Object);
+            var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
             var insuranceValue = await service.GetInsuranceValueAsync(10);
@@ -106,7 +105,7 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
                     CanBeInsured = true
                 });
 
-            var service = new InsuranceService(_logger.Object, _productService.Object);
+            var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
             var insuranceValue = await service.GetInsuranceValueAsync(10);
@@ -130,7 +129,7 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
                     CanBeInsured = true
                 });
 
-            var service = new InsuranceService(_logger.Object, _productService.Object);
+            var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
             var insuranceValue = await service.GetInsuranceValueAsync(10);
@@ -154,7 +153,7 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
                     CanBeInsured = true
                 });
 
-            var service = new InsuranceService(_logger.Object, _productService.Object);
+            var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
             var insuranceValue = await service.GetInsuranceValueAsync(10);
@@ -178,7 +177,7 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
                     CanBeInsured = true
                 });
 
-            var service = new InsuranceService(_logger.Object, _productService.Object);
+            var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
             var insuranceValue = await service.GetInsuranceValueAsync(10);
@@ -202,7 +201,7 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
                     CanBeInsured = true
                 });
 
-            var service = new InsuranceService(_logger.Object, _productService.Object);
+            var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
             var insuranceValue = await service.GetInsuranceValueAsync(10);
@@ -226,7 +225,7 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
                     CanBeInsured = true
                 });
 
-            var service = new InsuranceService(_logger.Object, _productService.Object);
+            var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
             var insuranceValue = await service.GetInsuranceValueAsync(10);
@@ -250,7 +249,7 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
                     CanBeInsured = true
                 });
 
-            var service = new InsuranceService(_logger.Object, _productService.Object);
+            var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
             var insuranceValue = await service.GetInsuranceValueAsync(10);

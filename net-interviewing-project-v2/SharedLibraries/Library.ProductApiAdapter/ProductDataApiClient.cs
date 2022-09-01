@@ -3,12 +3,6 @@ using Library.ProductApiAdapter.Exceptions;
 using Library.ProductApiAdapter.Models;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Library.ProductApiAdapter
 {

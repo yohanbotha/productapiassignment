@@ -1,5 +1,4 @@
 ﻿using Library.ProductApiAdapter.Exceptions;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Xunit;
 
