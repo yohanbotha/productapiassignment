@@ -1,4 +1,4 @@
-﻿namespace Insurance.Domain
+﻿namespace Insurance.Domain.Interfaces
 {
     public interface IInsuranceSettingsService
     {

@@ -1,8 +1,9 @@
 ﻿using Library.ProductApiAdapter;
 using Insurance.Domain.Dtos.Product;
 using Microsoft.Extensions.Logging;
+using Insurance.Domain.Interfaces;
 
-namespace Insurance.Domain
+namespace Insurance.Domain.Services
 {
     public class ProductService : IProductService
     {

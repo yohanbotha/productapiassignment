@@ -1,7 +1,8 @@
 ﻿using Insurance.Domain.Dtos.Product;
+using Insurance.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
 
-namespace Insurance.Domain
+namespace Insurance.Domain.Services
 {
     public class InsuranceService : IInsuranceService
     {

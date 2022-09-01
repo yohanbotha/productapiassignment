@@ -1,6 +1,6 @@
 ﻿using Insurance.Domain.Dtos.Product;
 
-namespace Insurance.Domain
+namespace Insurance.Domain.Interfaces
 {
     public interface IProductService
     {

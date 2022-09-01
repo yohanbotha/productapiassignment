@@ -1,19 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Library.ProductApiAdapter;
 using Library.ProductApiAdapter.Configuration;
-using Insurance.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Insurance.Api.ExceptionFilters;
+using Insurance.Domain.Services;
+using Insurance.Domain.Interfaces;
 
 namespace Insurance.Api
 {
@@ -30,6 +24,7 @@ namespace Insurance.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen();
 
             services.Configure<ProductDataApiConfiguration>(configuration =>
             {
@@ -39,6 +34,7 @@ namespace Insurance.Api
             services.AddScoped<IInsuranceService, InsuranceService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductDataApiClient, ProductDataApiClient>();
+            services.AddScoped<IInsuranceSettingsService, InsuranceSettingsService>();
 
             services.AddScoped<CustomExeptionAttribute>();
         }
@@ -56,6 +52,9 @@ namespace Insurance.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseEndpoints(endpoints =>
             {

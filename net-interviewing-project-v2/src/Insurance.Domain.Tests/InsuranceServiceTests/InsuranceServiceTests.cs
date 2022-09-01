@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Insurance.Domain.Interfaces;
+using Insurance.Domain.Services;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 

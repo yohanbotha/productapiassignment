@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Insurance.Domain.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace Insurance.Domain.Services
 {

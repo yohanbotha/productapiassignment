@@ -1,5 +1,5 @@
 ﻿using Insurance.Api.ExceptionFilters;
-using Insurance.Domain;
+using Insurance.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
