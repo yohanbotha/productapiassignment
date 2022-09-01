@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Coolblue.ProductApiAdapter.Models
+namespace Library.ProductApiAdapter.Models
 {
     public class Product
     {

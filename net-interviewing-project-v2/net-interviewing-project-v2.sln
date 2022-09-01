@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Insurance.Tests", "tests\In
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sharedLibraries", "sharedLibraries", "{02E6EA20-27C2-4796-919C-6AFE9C705751}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coolblue.ProductApiAdapter", "SharedLibraries\Coolblue.ProductApiAdapter\Coolblue.ProductApiAdapter.csproj", "{C1348A6A-E88B-434D-881D-310766A326E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.ProductApiAdapter", "SharedLibraries\Library.ProductApiAdapter\Library.ProductApiAdapter.csproj", "{C1348A6A-E88B-434D-881D-310766A326E7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coolblue.ProductApiAdapter.Tests", "SharedLibraries\Coolblue.ProductApiAdapter.Tests\Coolblue.ProductApiAdapter.Tests.csproj", "{094DE428-3517-42FC-8B8A-13A0BB59894F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.ProductApiAdapter.Tests", "SharedLibraries\Library.ProductApiAdapter.Tests\Library.ProductApiAdapter.Tests.csproj", "{094DE428-3517-42FC-8B8A-13A0BB59894F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.Domain", "src\Insurance.Domain\Insurance.Domain.csproj", "{E5132926-F85B-4AF0-98DF-88C94FE631D8}"
 EndProject

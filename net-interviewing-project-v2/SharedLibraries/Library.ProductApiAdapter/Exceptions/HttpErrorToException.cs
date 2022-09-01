@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Coolblue.ProductApiAdapter.Exceptions
+namespace Library.ProductApiAdapter.Exceptions
 {
     internal static class HttpErrorToException
     {

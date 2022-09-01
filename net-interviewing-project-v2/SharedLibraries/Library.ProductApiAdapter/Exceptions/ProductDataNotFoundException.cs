@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Coolblue.ProductApiAdapter.Exceptions
+namespace Library.ProductApiAdapter.Exceptions
 {
     public class ProductDataNotFoundException : Exception
 	{

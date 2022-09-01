@@ -1,4 +1,4 @@
-﻿using Coolblue.ProductApiAdapter;
+﻿using Library.ProductApiAdapter;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System;
@@ -25,7 +25,7 @@ namespace Insurance.Domain.Tests.ProductServiceTests
         {
             // Setup
             _productClient.Setup(c => c.GetProductAsync(10)).ReturnsAsync(
-                new Coolblue.ProductApiAdapter.Models.Product
+                new Library.ProductApiAdapter.Models.Product
                 {
                     Id = 10,
                     Name = "Test Product",
@@ -34,7 +34,7 @@ namespace Insurance.Domain.Tests.ProductServiceTests
                 });
 
             _productClient.Setup(c => c.GetProductTypeAsync(1)).ReturnsAsync(
-                new Coolblue.ProductApiAdapter.Models.ProductType
+                new Library.ProductApiAdapter.Models.ProductType
                 {
                     Id = 1,
                     Name = "Test Product Type",

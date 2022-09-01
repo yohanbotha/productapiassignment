@@ -1,9 +1,9 @@
-﻿using Coolblue.ProductApiAdapter.Exceptions;
+﻿using Library.ProductApiAdapter.Exceptions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Xunit;
 
-namespace Coolblue.ProductApiAdapter.Tests
+namespace Library.ProductApiAdapter.Tests
 {
     public class ProductDataApiClientTests
     {
@@ -61,7 +61,7 @@ namespace Coolblue.ProductApiAdapter.Tests
         {
             IProductDataApiClient invalidClient = new ProductDataApiClient(Options.Create(new Configuration.ProductDataApiConfiguration
             {
-                BaseUrl = $"https://www.coolblue.nl/en"
+                BaseUrl = $"https://www.Library.nl/en"
             }));
             Assert.ThrowsAsync<Exception>(() => _client.GetProductAsync(725435));
         }

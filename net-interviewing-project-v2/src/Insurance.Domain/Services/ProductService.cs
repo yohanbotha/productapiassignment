@@ -1,4 +1,4 @@
-﻿using Coolblue.ProductApiAdapter;
+﻿using Library.ProductApiAdapter;
 using Insurance.Domain.Dtos.Product;
 using Microsoft.Extensions.Logging;
 using System;

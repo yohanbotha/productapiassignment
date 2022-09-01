@@ -1,6 +1,6 @@
-﻿using Coolblue.ProductApiAdapter.Configuration;
-using Coolblue.ProductApiAdapter.Exceptions;
-using Coolblue.ProductApiAdapter.Models;
+﻿using Library.ProductApiAdapter.Configuration;
+using Library.ProductApiAdapter.Exceptions;
+using Library.ProductApiAdapter.Models;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Coolblue.ProductApiAdapter
+namespace Library.ProductApiAdapter
 {
     public class ProductDataApiClient : IProductDataApiClient
     {
