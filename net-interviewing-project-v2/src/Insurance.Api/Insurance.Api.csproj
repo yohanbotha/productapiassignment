@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SharedLibraries\Library.ProductApiAdapter\Library.ProductApiAdapter.csproj" />
     <ProjectReference Include="..\Insurance.Domain\Insurance.Domain.csproj" />
   </ItemGroup>
 </Project>
