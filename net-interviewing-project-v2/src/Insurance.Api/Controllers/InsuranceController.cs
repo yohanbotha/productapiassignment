@@ -1,4 +1,5 @@
-﻿using Insurance.Api.Models.Insurance;
+﻿using Insurance.Api.ExceptionFilters;
+using Insurance.Api.Models.Insurance;
 using Insurance.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Insurance.Api.Controllers
 {
+    [CustomExeption]
     public class InsuranceController : Controller
     {
         private readonly ILogger<InsuranceController> _logger;
