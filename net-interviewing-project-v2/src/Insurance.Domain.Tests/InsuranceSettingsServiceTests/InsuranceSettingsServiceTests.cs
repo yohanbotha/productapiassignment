@@ -15,36 +15,36 @@ namespace Insurance.Domain.Tests.InsuranceSettingsServiceTests
         }
 
         [Fact]
-        public void GetInsurableSpeacialProducts_ShouldReturnSpecialProducts()
+        public void GetInsurableSpeacialProductTypes_ShouldReturnSpecialProductTypes()
         {
             var service = new InsuranceSettingsService(_logger.Object);
 
             // Act
-            var insurableProduts = service.GetInsurableSpeacialProducts();
+            var insurableProduts = service.GetInsurableSpeacialProductTypes();
 
             // Assert
             Assert.Equal(insurableProduts, new List<string> { "Laptops", "Smartphones" });
         }
 
         [Fact]
-        public void GetMinimumInsuranceCost_ShouldReturnMinimumValue()
+        public void GetInsuranceCostForSalesPriceBetween500And2000_ShouldInsuranceCost()
         {
             var service = new InsuranceSettingsService(_logger.Object);
 
             // Act
-            var cost = service.GetMinimumInsuranceCost();
+            var cost = service.GetInsuranceCostForSalesPriceBetween500And2000();
 
             // Assert
             Assert.Equal(1000f, cost);
         }
 
         [Fact]
-        public void GetMaximumInsuranceCost_ShouldReturnMaximumValue()
+        public void GetInsuranceCostForSalesPriceGreaterThan2000_ShouldInsuranceCost()
         {
             var service = new InsuranceSettingsService(_logger.Object);
 
             // Act
-            var cost = service.GetMaximumInsuranceCost();
+            var cost = service.GetInsuranceCostForSalesPriceGreaterThan2000();
 
             // Assert
             Assert.Equal(2000f, cost);
@@ -56,10 +56,22 @@ namespace Insurance.Domain.Tests.InsuranceSettingsServiceTests
             var service = new InsuranceSettingsService(_logger.Object);
 
             // Act
-            var cost = service.GetInsuranceCostForSpeacialProducts();
+            var cost = service.GetInsuranceCostForSpecialProducts();
 
             // Assert
             Assert.Equal(500f, cost);
+        }
+
+        [Fact]
+        public void GetInsurableSpeacialOrderProductTypeIds_ShouldReturnSpecialProductTypeIdss()
+        {
+            var service = new InsuranceSettingsService(_logger.Object);
+
+            // Act
+            var insurableProduts = service.GetInsurableSpeacialOrderProductTypeIds();
+
+            // Assert
+            Assert.Equal(insurableProduts, new List<int> { 32, 33, 35 });
         }
     }
 }

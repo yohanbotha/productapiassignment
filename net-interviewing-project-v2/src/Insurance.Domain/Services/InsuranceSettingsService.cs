@@ -12,24 +12,29 @@ namespace Insurance.Domain.Services
             _logger = logger;
         }
 
-        public IList<string> GetInsurableSpeacialProducts()
+        public IList<string> GetInsurableSpeacialProductTypes()
         {
             return new List<string> { "Laptops", "Smartphones" };
         }
 
-        public float GetInsuranceCostForSpeacialProducts()
+        public float GetInsuranceCostForSpecialProducts()
         {
             return 500f;
         }
 
-        public float GetMaximumInsuranceCost()
+        public float GetInsuranceCostForSalesPriceGreaterThan2000()
         {
             return 2000f;
         }
 
-        public float GetMinimumInsuranceCost()
+        public float GetInsuranceCostForSalesPriceBetween500And2000()
         {
             return 1000f;
+        }
+
+        public IList<int> GetInsurableSpeacialOrderProductTypeIds()
+        {
+            return new List<int> { 32, 33, 35 };
         }
     }
 }

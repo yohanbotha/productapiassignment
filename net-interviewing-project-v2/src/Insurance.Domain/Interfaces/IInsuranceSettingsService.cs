@@ -2,9 +2,10 @@
 {
     public interface IInsuranceSettingsService
     {
-        IList<string> GetInsurableSpeacialProducts();
-        float GetInsuranceCostForSpeacialProducts();
-        float GetMinimumInsuranceCost();
-        float GetMaximumInsuranceCost();
+        IList<string> GetInsurableSpeacialProductTypes();
+        float GetInsuranceCostForSpecialProducts();
+        float GetInsuranceCostForSalesPriceBetween500And2000();
+        float GetInsuranceCostForSalesPriceGreaterThan2000();
+        IList<int> GetInsurableSpeacialOrderProductTypeIds();
     }
 }

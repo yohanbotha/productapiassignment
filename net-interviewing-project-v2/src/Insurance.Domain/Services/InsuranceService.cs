@@ -31,16 +31,16 @@ namespace Insurance.Domain.Services
             {
                 if (product.SalesPrice >= 500 && product.SalesPrice < 2000)
                 {
-                    cost += _insuranceSettingsService.GetMinimumInsuranceCost();
+                    cost += _insuranceSettingsService.GetInsuranceCostForSalesPriceBetween500And2000();
                 }
                 else if (product.SalesPrice >= 2000)
                 {
-                    cost += _insuranceSettingsService.GetMaximumInsuranceCost();
+                    cost += _insuranceSettingsService.GetInsuranceCostForSalesPriceGreaterThan2000();
                 }
 
-                if (_insuranceSettingsService.GetInsurableSpeacialProducts().Any(c=>c == product.ProductTypeName))
+                if (_insuranceSettingsService.GetInsurableSpeacialProductTypes().Any(c=>c == product.ProductTypeName))
                 {
-                    cost += _insuranceSettingsService.GetInsuranceCostForSpeacialProducts();
+                    cost += _insuranceSettingsService.GetInsuranceCostForSpecialProducts();
                 }
             }
             else

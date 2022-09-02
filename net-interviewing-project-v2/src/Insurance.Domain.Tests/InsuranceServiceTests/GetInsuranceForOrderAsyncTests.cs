@@ -14,10 +14,10 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
 
         public GetInsuranceForOrderAsyncTests()
         {
-            _insuranceSettingsService.Setup(c => c.GetMaximumInsuranceCost()).Returns(2000);
-            _insuranceSettingsService.Setup(c => c.GetMinimumInsuranceCost()).Returns(1000);
-            _insuranceSettingsService.Setup(c => c.GetInsuranceCostForSpeacialProducts()).Returns(500);
-            _insuranceSettingsService.Setup(c => c.GetInsurableSpeacialProducts()).Returns(new List<string> { "Laptops", "Smartphones" });
+            _insuranceSettingsService.Setup(c => c.GetInsuranceCostForSalesPriceGreaterThan2000()).Returns(2000);
+            _insuranceSettingsService.Setup(c => c.GetInsuranceCostForSalesPriceBetween500And2000()).Returns(1000);
+            _insuranceSettingsService.Setup(c => c.GetInsuranceCostForSpecialProducts()).Returns(500);
+            _insuranceSettingsService.Setup(c => c.GetInsurableSpeacialProductTypes()).Returns(new List<string> { "Laptops", "Smartphones" });
         }
 
         [Fact]
