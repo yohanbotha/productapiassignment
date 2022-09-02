@@ -53,13 +53,18 @@ namespace Insurance.Domain.Services
 
         public async Task<float> GetInsuranceForOrderAsync(IList<int> productIds)
         {
+            return await CalculateProductInsuranceCost(productIds);
+        }
+
+        private async Task<float> CalculateProductInsuranceCost(IList<int> productIds)
+        {
             float cost = 0f;
 
             var productCache = new Dictionary<int, float>();
 
-            foreach(var productId in productIds)
+            foreach (var productId in productIds)
             {
-                if(productCache.ContainsKey(productId))
+                if (productCache.ContainsKey(productId))
                 {
                     cost += productCache[productId];
                 }
