@@ -1,0 +1,1 @@
+1. Insurance calculation for products has been refactored to a private method. 
