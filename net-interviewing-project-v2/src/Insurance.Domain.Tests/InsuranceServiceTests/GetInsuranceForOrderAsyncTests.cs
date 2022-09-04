@@ -18,6 +18,8 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
             _insuranceSettingsService.Setup(c => c.GetInsuranceCostForSalesPriceBetween500And2000()).Returns(1000);
             _insuranceSettingsService.Setup(c => c.GetInsuranceCostForSpecialProducts()).Returns(500);
             _insuranceSettingsService.Setup(c => c.GetInsurableSpeacialProductTypes()).Returns(new List<string> { "Laptops", "Smartphones" });
+            _insuranceSettingsService.Setup(c => c.GetInsurableSpeacialProductTypesIdsInAnOrder()).Returns(new List<int> { 32, 33, 35 });
+            _insuranceSettingsService.Setup(c => c.GetInsuranceCostForSpeacialProductsInAnOrder()).Returns(500);
         }
 
         [Fact]
@@ -88,6 +90,41 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
 
             // Assert
             Assert.Equal(3000, insuranceValue);
+        }
+
+        [Fact]
+        public async void GetInsuranceForOrderAsync_OrderWithSpecialProducts_ShouldReturnCost()
+        {
+            // Setup
+            _productService.Setup(c => c.GetProductAsync(10)).ReturnsAsync(
+                new Dtos.Product.ProductDto
+                {
+                    Id = 10,
+                    Name = "Test Product",
+                    ProductTypeId = 32,
+                    SalesPrice = 500,
+                    ProductTypeName = "Test Product Type",
+                    CanBeInsured = false
+                });
+
+            _productService.Setup(c => c.GetProductAsync(20)).ReturnsAsync(
+                new Dtos.Product.ProductDto
+                {
+                    Id = 20,
+                    Name = "Test Product",
+                    ProductTypeId = 1,
+                    SalesPrice = 500,
+                    ProductTypeName = "Test Product Type",
+                    CanBeInsured = true
+                });
+
+            var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
+
+            // Act
+            var insuranceValue = await service.GetInsuranceForOrderAsync(new List<int> { 10, 20 });
+
+            // Assert
+            Assert.Equal(1500, insuranceValue);
         }
     }
 }

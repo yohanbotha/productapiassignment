@@ -32,9 +32,14 @@ namespace Insurance.Domain.Services
             return 1000f;
         }
 
-        public IList<int> GetInsurableSpeacialOrderProductTypeIds()
+        public IList<int> GetInsurableSpeacialProductTypesIdsInAnOrder()
         {
             return new List<int> { 32, 33, 35 };
+        }
+
+        public float GetInsuranceCostForSpeacialProductsInAnOrder()
+        {
+            return 500f;
         }
     }
 }

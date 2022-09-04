@@ -25,9 +25,9 @@ namespace Insurance.Api.Controllers
         {
             _logger.LogInformation($"CalculateInsuranceForProduct api invoked: {productId}");
 
-            var insuranceValue = await _insuranceService.GetInsuranceForProductAsync(productId);
+            var insuranceProductDto = await _insuranceService.GetInsuranceForProductAsync(productId);
 
-            return Ok(new { insuranceValue = insuranceValue});
+            return Ok(new { insuranceValue = insuranceProductDto.InsuranceCost });
         }
 
         [HttpPost]

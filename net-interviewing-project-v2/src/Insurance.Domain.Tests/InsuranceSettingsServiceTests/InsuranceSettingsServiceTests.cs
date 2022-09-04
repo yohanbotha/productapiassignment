@@ -63,15 +63,27 @@ namespace Insurance.Domain.Tests.InsuranceSettingsServiceTests
         }
 
         [Fact]
-        public void GetInsurableSpeacialOrderProductTypeIds_ShouldReturnSpecialProductTypeIdss()
+        public void GetInsurableSpeacialProductTypesIdsInAnOrder_ShouldReturnSpecialProductTypeIdss()
         {
             var service = new InsuranceSettingsService(_logger.Object);
 
             // Act
-            var insurableProduts = service.GetInsurableSpeacialOrderProductTypeIds();
+            var insurableProduts = service.GetInsurableSpeacialProductTypesIdsInAnOrder();
 
             // Assert
             Assert.Equal(insurableProduts, new List<int> { 32, 33, 35 });
+        }
+
+        [Fact]
+        public void GetInsuranceCostForSpeacialProductsInAnOrder_ShouldReturnInsuranceCostForSpeacialProductsInAnOrder()
+        {
+            var service = new InsuranceSettingsService(_logger.Object);
+
+            // Act
+            var cost = service.GetInsuranceCostForSpeacialProductsInAnOrder();
+
+            // Assert
+            Assert.Equal(500f, cost);
         }
     }
 }

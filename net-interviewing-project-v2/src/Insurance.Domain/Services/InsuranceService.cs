@@ -1,4 +1,5 @@
-﻿using Insurance.Domain.Dtos.Product;
+﻿using Insurance.Domain.Dtos.Insurance;
+using Insurance.Domain.Dtos.Product;
 using Insurance.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -17,11 +18,16 @@ namespace Insurance.Domain.Services
             _insuranceSettingsService = insuranceSettingsService;
         }
 
-        public async Task<float> GetInsuranceForProductAsync(int productId)
+        public async Task<InsuranceProductDto> GetInsuranceForProductAsync(int productId)
         {
             var product = await _productService.GetProductAsync(productId);
 
-            return CalculateInusranceCostForProduct(product);
+            var insuranceProduct = new InsuranceProductDto();
+
+            insuranceProduct.Product = product;
+            insuranceProduct.InsuranceCost = CalculateInusranceCostForProduct(product);
+
+            return insuranceProduct;
         }
 
         private float CalculateInusranceCostForProduct(ProductDto product)
@@ -53,27 +59,44 @@ namespace Insurance.Domain.Services
 
         public async Task<float> GetInsuranceForOrderAsync(IList<int> productIds)
         {
-            return await CalculateProductInsuranceCost(productIds);
-        }
+            float productInsuranceCost = 0f;
 
-        private async Task<float> CalculateProductInsuranceCost(IList<int> productIds)
-        {
-            float cost = 0f;
-
-            var productCache = new Dictionary<int, float>();
+            var productCache = new Dictionary<int, InsuranceProductDto>();
 
             foreach (var productId in productIds)
             {
                 if (productCache.ContainsKey(productId))
                 {
-                    cost += productCache[productId];
+                    productInsuranceCost += productCache[productId].InsuranceCost;
                 }
                 else
                 {
-                    var insuranceValue = await GetInsuranceForProductAsync(productId);
-                    cost += insuranceValue;
+                    var insuranceProductDto = await GetInsuranceForProductAsync(productId);
+                    productInsuranceCost += insuranceProductDto.InsuranceCost;
 
-                    productCache.Add(productId, insuranceValue);
+                    productCache.Add(productId, insuranceProductDto);
+                }
+            }
+
+            var specialProductInsuranceCost = CalculateInsuranceCostForSpecialProductsInAnOrder(productCache.Values.Select(c => c.Product).ToList());
+
+            var totalInsuranceCost = productInsuranceCost + specialProductInsuranceCost;
+
+            return totalInsuranceCost;
+        }
+
+        private float CalculateInsuranceCostForSpecialProductsInAnOrder(IList<ProductDto> products)
+        {
+            float cost = 0f;
+
+            var specialProductTypeIds = _insuranceSettingsService.GetInsurableSpeacialProductTypesIdsInAnOrder();
+
+            foreach(var product in products)
+            {
+                if (specialProductTypeIds.Contains(product.ProductTypeId))
+                {
+                    cost = _insuranceSettingsService.GetInsuranceCostForSpecialProducts();
+                    break;
                 }
             }
             return cost;

@@ -6,6 +6,7 @@
         float GetInsuranceCostForSpecialProducts();
         float GetInsuranceCostForSalesPriceBetween500And2000();
         float GetInsuranceCostForSalesPriceGreaterThan2000();
-        IList<int> GetInsurableSpeacialOrderProductTypeIds();
+        IList<int> GetInsurableSpeacialProductTypesIdsInAnOrder();
+        float GetInsuranceCostForSpeacialProductsInAnOrder();
     }
 }

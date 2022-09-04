@@ -38,10 +38,10 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
             var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
-            var insuranceValue = await service.GetInsuranceForProductAsync(10);
+            var insuranceProductDto = await service.GetInsuranceForProductAsync(10);
 
             // Assert
-            Assert.Equal(0, insuranceValue);
+            Assert.Equal(0, insuranceProductDto.InsuranceCost);
         }
 
         [Fact]
@@ -62,10 +62,10 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
             var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
-            var insuranceValue = await service.GetInsuranceForProductAsync(10);
+            var insuranceProductDto = await service.GetInsuranceForProductAsync(10);
 
             // Assert
-            Assert.Equal(0, insuranceValue);
+            Assert.Equal(0, insuranceProductDto.InsuranceCost);
         }
 
         [Fact]
@@ -86,10 +86,10 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
             var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
-            var insuranceValue = await service.GetInsuranceForProductAsync(10);
+            var insuranceProductDto = await service.GetInsuranceForProductAsync(10);
 
             // Assert
-            Assert.Equal(1000, insuranceValue);
+            Assert.Equal(1000, insuranceProductDto.InsuranceCost);
         }
 
         [Fact]
@@ -110,10 +110,10 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
             var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
-            var insuranceValue = await service.GetInsuranceForProductAsync(10);
+            var insuranceProductDto = await service.GetInsuranceForProductAsync(10);
 
             // Assert
-            Assert.Equal(2000, insuranceValue);
+            Assert.Equal(2000, insuranceProductDto.InsuranceCost);
         }
 
         [Fact]
@@ -134,10 +134,10 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
             var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
-            var insuranceValue = await service.GetInsuranceForProductAsync(10);
+            var insuranceProductDto = await service.GetInsuranceForProductAsync(10);
 
             // Assert
-            Assert.Equal(500, insuranceValue);
+            Assert.Equal(500, insuranceProductDto.InsuranceCost);
         }
 
         [Fact]
@@ -158,10 +158,10 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
             var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
-            var insuranceValue = await service.GetInsuranceForProductAsync(10);
+            var insuranceProductDto = await service.GetInsuranceForProductAsync(10);
 
             // Assert
-            Assert.Equal(1500, insuranceValue);
+            Assert.Equal(1500, insuranceProductDto.InsuranceCost);
         }
 
         [Fact]
@@ -182,10 +182,10 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
             var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
-            var insuranceValue = await service.GetInsuranceForProductAsync(10);
+            var insuranceProductDto = await service.GetInsuranceForProductAsync(10);
 
             // Assert
-            Assert.Equal(2500, insuranceValue);
+            Assert.Equal(2500, insuranceProductDto.InsuranceCost);
         }
 
         [Fact]
@@ -206,10 +206,10 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
             var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
-            var insuranceValue = await service.GetInsuranceForProductAsync(10);
+            var insuranceProductDto = await service.GetInsuranceForProductAsync(10);
 
             // Assert
-            Assert.Equal(500, insuranceValue);
+            Assert.Equal(500, insuranceProductDto.InsuranceCost);
         }
 
         [Fact]
@@ -230,10 +230,10 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
             var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
-            var insuranceValue = await service.GetInsuranceForProductAsync(10);
+            var insuranceProductDto = await service.GetInsuranceForProductAsync(10);
 
             // Assert
-            Assert.Equal(1500, insuranceValue);
+            Assert.Equal(1500, insuranceProductDto.InsuranceCost);
         }
 
         [Fact]
@@ -254,10 +254,10 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
             var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object);
 
             // Act
-            var insuranceValue = await service.GetInsuranceForProductAsync(10);
+            var insuranceProductDto = await service.GetInsuranceForProductAsync(10);
 
             // Assert
-            Assert.Equal(2500, insuranceValue);
+            Assert.Equal(2500, insuranceProductDto.InsuranceCost);
         }
     }
 }

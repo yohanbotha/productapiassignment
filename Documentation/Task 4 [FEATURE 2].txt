@@ -1,1 +1,8 @@
 1. Insurance calculation for products has been refactored to a private method. 
+2. Introduce new InsuranceProduct Dto
+3. Existing product insurance cost return type updated.
+4. Order insurance cost calculation method updated.
+5. New unit test updated
+
+Assumption:
+I have not considered the canBeInsured property when for camera products. 
