@@ -51,5 +51,28 @@ namespace Insurance.Domain.Tests.ProductServiceTests
             Assert.Equal("Test Product Type", productDto.ProductTypeName);
             Assert.True(productDto.CanBeInsured);
         }
+
+        [Fact]
+        public async void GetProductTypeAsync_ValidProductType_ShouldReturnValidProductType()
+        {
+            // Setup
+            _productClient.Setup(c => c.GetProductTypeAsync(10)).ReturnsAsync(
+                new Library.ProductApiAdapter.Models.ProductType
+                {
+                    Id = 10,
+                    Name = "Test Product Type",
+                    CanBeInsured = true
+                });
+
+            var service = new ProductService(_logger.Object, _productClient.Object);
+
+            // Act
+            var productTypeDto = await service.GetProductTypeAsync(10);
+
+            // Assert
+            Assert.Equal(10, productTypeDto.Id);
+            Assert.Equal("Test Product Type", productTypeDto.Name);
+            Assert.True(productTypeDto.CanBeInsured);
+        }
     }
 }

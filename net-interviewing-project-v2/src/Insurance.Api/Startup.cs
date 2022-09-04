@@ -40,6 +40,7 @@ namespace Insurance.Api
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductDataApiClient, ProductDataApiClient>();
             services.AddScoped<IInsuranceSettingsService, InsuranceSettingsService>();
+            services.AddScoped<IRateService, RateService>();
 
             services.AddScoped<CustomExeptionAttribute>();
         }

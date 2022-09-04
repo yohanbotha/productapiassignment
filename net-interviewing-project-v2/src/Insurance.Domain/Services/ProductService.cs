@@ -18,7 +18,7 @@ namespace Insurance.Domain.Services
 
         public async Task<ProductDto> GetProductAsync(int productId)
         {
-            _logger.LogInformation($"GetProductAsync Fetching data Product Api product id: {productId}");
+            _logger.LogInformation($"GetProductAsync Fetching data Product Api ProductId: {productId}");
             var product = await _productDataApiClient.GetProductAsync(productId);
 
             var productType = await _productDataApiClient.GetProductTypeAsync(product.ProductTypeId);
@@ -31,6 +31,20 @@ namespace Insurance.Domain.Services
                 ProductTypeId = productType.Id, 
                 ProductTypeName = productType.Name, 
                 CanBeInsured = productType.CanBeInsured 
+            };
+        }
+
+        public async Task<ProductTypeDto> GetProductTypeAsync(int productTypeId)
+        {
+            _logger.LogInformation($"GetProductAsync Fetching data Product Api ProductTypeId: {productTypeId}");
+
+            var productType = await _productDataApiClient.GetProductTypeAsync(productTypeId);
+
+            return new ProductTypeDto
+            {
+                Id = productType.Id,
+                Name = productType.Name,
+                CanBeInsured = productType.CanBeInsured
             };
         }
     }

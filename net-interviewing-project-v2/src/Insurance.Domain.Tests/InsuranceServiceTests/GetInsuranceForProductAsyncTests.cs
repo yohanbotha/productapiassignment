@@ -282,11 +282,12 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
                     CanBeInsured = true
                 });
 
-            _insuranceDbContext.Rates.Add(new Data.Entities.Rate
-            {
-                ProductTypeId = 1,
-                SurchargeRate = 10
-            });
+            _insuranceDbContext.Rates.Add(
+                new Data.Entities.Rate
+                {
+                    ProductTypeId = 1,
+                    SurchargeRate = 10
+                });
             _insuranceDbContext.SaveChanges();
 
             var service = new InsuranceService(_logger.Object, _productService.Object, _insuranceSettingsService.Object, _insuranceDbContext);
