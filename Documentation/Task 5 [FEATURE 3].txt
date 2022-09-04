@@ -1,0 +1,6 @@
+1. New Rate Controller added to add surcharge rates from the back office with validations
+2. DB and a new table created to store data
+3. DB migrations added
+4. New service added to validate surcharge data and add new unit tests
+5. Insurance cost updated according to surcharge rates
+5. Existing unit test updated
