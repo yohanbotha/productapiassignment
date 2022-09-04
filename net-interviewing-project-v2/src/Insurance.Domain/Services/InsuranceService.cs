@@ -61,7 +61,7 @@ namespace Insurance.Domain.Services
 
             if(dbRate != null)
             {
-                cost += dbRate.SurchargeRate;
+                cost += (cost * dbRate.SurchargeRate) / 100;
             }
 
             return cost;

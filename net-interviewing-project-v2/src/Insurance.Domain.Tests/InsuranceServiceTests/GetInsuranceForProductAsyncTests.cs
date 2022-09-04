@@ -285,7 +285,7 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
             _insuranceDbContext.Rates.Add(new Data.Entities.Rate
             {
                 ProductTypeId = 1,
-                SurchargeRate = 150
+                SurchargeRate = 10
             });
             _insuranceDbContext.SaveChanges();
 
@@ -295,7 +295,7 @@ namespace Insurance.Domain.Tests.InsuranceServiceTests
             var insuranceProductDto = await service.GetInsuranceForProductAsync(10);
 
             // Assert
-            Assert.Equal(2650, insuranceProductDto.InsuranceCost);
+            Assert.Equal(2750, insuranceProductDto.InsuranceCost);
         }
     }
 }
