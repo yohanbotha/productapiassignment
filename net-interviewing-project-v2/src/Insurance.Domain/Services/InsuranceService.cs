@@ -1,4 +1,5 @@
-﻿using Insurance.Domain.Dtos.Insurance;
+﻿using Insurance.Domain.Data;
+using Insurance.Domain.Dtos.Insurance;
 using Insurance.Domain.Dtos.Product;
 using Insurance.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
@@ -10,12 +11,14 @@ namespace Insurance.Domain.Services
         private readonly ILogger<InsuranceService> _logger;
         private readonly IProductService _productService;
         private readonly IInsuranceSettingsService _insuranceSettingsService;
+        private readonly InsuranceDBContext _insuranceDbContext;
 
-        public InsuranceService(ILogger<InsuranceService> logger, IProductService productService, IInsuranceSettingsService insuranceSettingsService)
+        public InsuranceService(ILogger<InsuranceService> logger, IProductService productService, IInsuranceSettingsService insuranceSettingsService, InsuranceDBContext insuranceDBContext)
         {
             _logger = logger;
             _productService = productService;
             _insuranceSettingsService = insuranceSettingsService;
+            _insuranceDbContext = insuranceDBContext;
         }
 
         public async Task<InsuranceProductDto> GetInsuranceForProductAsync(int productId)
@@ -52,6 +55,13 @@ namespace Insurance.Domain.Services
             else
             {
                 cost = 0;
+            }
+
+            var dbRate = _insuranceDbContext.Rates.FirstOrDefault(c => c.ProductTypeId == product.ProductTypeId);
+
+            if(dbRate != null)
+            {
+                cost += dbRate.SurchargeRate;
             }
 
             return cost;
