@@ -2,12 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <UserSecretsId>08bcdeb9-8574-4450-a410-a975a8d6c217</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Serilog" Version="2.11.0" />
 	<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.8" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.8">
+		<PrivateAssets>all</PrivateAssets>
+		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>  
   </ItemGroup>
 
   <ItemGroup>

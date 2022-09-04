@@ -8,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Insurance.Api.ExceptionFilters;
 using Insurance.Domain.Services;
 using Insurance.Domain.Interfaces;
+using Insurance.Domain.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Insurance.Api
 {
@@ -25,6 +27,9 @@ namespace Insurance.Api
         {
             services.AddControllers();
             services.AddSwaggerGen();
+
+            services.AddDbContext<InsuranceDBContext>(options =>
+                options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("InsuranceDB")));
 
             services.Configure<ProductDataApiConfiguration>(configuration =>
             {
@@ -56,10 +61,21 @@ namespace Insurance.Api
             app.UseSwagger();
             app.UseSwaggerUI();
 
+            UpdateDatabase(app);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using var serviceScope = app.ApplicationServices
+            .GetRequiredService<IServiceScopeFactory>()
+            .CreateScope();
+            using var context = serviceScope.ServiceProvider.GetService<InsuranceDBContext>();
+            context.Database.Migrate();
         }
     }
 }
